@@ -11,9 +11,9 @@ namespace Tetris
     class SaveHistory
     {
         string path = @"C:\Program Files (x86)\实用工具箱\game";
-        public void write(string text)
+        public void Write(string text)
         {
-            create();
+            Create();
             FileStream fs = new FileStream(path + "\\tetris.txt", FileMode.Append);
             StreamWriter sw = new StreamWriter(fs, Encoding.Unicode);
             sw.Write(DateTime.Now.ToString()+"\t"+text + "\r\n");
@@ -21,12 +21,12 @@ namespace Tetris
             fs.Close();
         }
 
-        public void read()
+        public void Read()
         {
-            create();
+            Create();
             Process.Start(path + "\\tetris.txt");
         }
-        public void create()
+        public void Create()
         {
             if (!Directory.Exists(path))
             {

@@ -48,13 +48,13 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <Label Content="速度："/>
-                    <Slider  ValueChanged="speedSlider_ValueChanged" Name="speedSlider" Minimum="0" Maximum="5" Grid.Column="1" Grid.ColumnSpan="3"/>
-                    <Button ToolTip="快捷键：Q" Background="White" Focusable="False" Name="start" Content="开始" Grid.Row="1" Grid.ColumnSpan="2" Click="start_Click"/>
-                    <Button ToolTip="快捷键：Z" IsEnabled="False" Background="White" Focusable="False" Name="goOn" Content="暂停" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Click="goOn_Click"/>
-                    <RepeatButton IsEnabled="False" Background="White" Focusable="False" Name="leftButton" Content="Left" Grid.Row="2" Grid.RowSpan="2" Click="leftButton_Click"/>
-                    <RepeatButton IsEnabled="False" Background="White" Focusable="False" Name="rightButton" Content="Right" Grid.Row="2" Grid.RowSpan="2" Grid.Column="3" Click="leftButton_Click"/>
-                    <RepeatButton IsEnabled="False" Background="White" Focusable="False" Name="upButton" Content="Up" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Click="leftButton_Click"/>
-                    <RepeatButton IsEnabled="False" Background="White" Focusable="False" Name="downButton" Content="Down" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Click="leftButton_Click"/>
+                    <Slider  ValueChanged="SpeedSlider_ValueChanged" Name="speedSlider" Minimum="0" Maximum="5" Grid.Column="1" Grid.ColumnSpan="3"/>
+                    <Button ToolTip="快捷键：Q" Background="White" Focusable="False" Name="start" Content="开始" Grid.Row="1" Grid.ColumnSpan="2" Click="Start_Click"/>
+                    <Button ToolTip="快捷键：Z" IsEnabled="False" Background="White" Focusable="False" Name="goOn" Content="暂停" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" Click="GoOn_Click"/>
+                    <RepeatButton IsEnabled="False" Background="White" Focusable="False" Name="leftButton" Content="Left" Grid.Row="2" Grid.RowSpan="2" Click="LeftButton_Click"/>
+                    <RepeatButton IsEnabled="False" Background="White" Focusable="False" Name="rightButton" Content="Right" Grid.Row="2" Grid.RowSpan="2" Grid.Column="3" Click="LeftButton_Click"/>
+                    <RepeatButton IsEnabled="False" Background="White" Focusable="False" Name="upButton" Content="Up" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Click="LeftButton_Click"/>
+                    <RepeatButton IsEnabled="False" Background="White" Focusable="False" Name="downButton" Content="Down" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Click="LeftButton_Click"/>
                 </Grid>
             </GroupBox>
 
@@ -79,14 +79,14 @@
                     <Label Height="40" Content="" Name="labelTime" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                     <Label Height="40" Content="分数：" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     <Label Height="40" Content="" Name="labelScore" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                    <Button Focusable="False" Background="White" Name="recoder" Content="记录" Height="40" Click="recoder_Click" Grid.Row="3" Grid.Column="1"/>
+                    <Button Focusable="False" Background="White" Name="recoder" Content="记录" Height="40" Click="Recoder_Click" Grid.Row="3" Grid.Column="1"/>
                     <Grid Grid.Row="3">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <CheckBox Checked="cb_Checked" Focusable="False" Content="纯色" HorizontalAlignment="Left" VerticalAlignment="Center" Name="cb" Background="White" IsChecked="False"/>
-                        <CheckBox Checked="cb_Checked" Grid.Row="1" Focusable="False" Content="边框" HorizontalAlignment="Left" VerticalAlignment="Center" Name="db" Background="White" IsChecked="False"/>
+                        <CheckBox Checked="Cb_Checked" Focusable="False" Content="纯色" HorizontalAlignment="Left" VerticalAlignment="Center" Name="cb" Background="White" IsChecked="False"/>
+                        <CheckBox Checked="Cb_Checked" Grid.Row="1" Focusable="False" Content="边框" HorizontalAlignment="Left" VerticalAlignment="Center" Name="db" Background="White" IsChecked="False"/>
                     </Grid>
 
                 </Grid>

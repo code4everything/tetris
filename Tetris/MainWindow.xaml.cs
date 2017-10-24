@@ -59,13 +59,13 @@ namespace Tetris
         }
 
         #region 画五个基本的图形
-        public void drawShapes(int alternative)
+        public void DrawShapes(int alternative)
         {
             if (complete)
             {
-                if (gameover())
+                if (Gameover())
                 {
-                    sh.write("用时：" + labelTime.Content + "\t\t分数：" + labelScore.Content);
+                    sh.Write("用时：" + labelTime.Content + "\t\t分数：" + labelScore.Content);
                     dt.IsEnabled = false;
                     //sp.Stop();
                     complete = false;
@@ -84,10 +84,12 @@ namespace Tetris
             //画小方块
             for (int i = 0; i < 4; i++)
             {
-                rect[i] = new Rectangle();
-                rect[i].Height = HEIGHT;
-                rect[i].Width = HEIGHT;
-                if (cb.IsChecked==true)
+                rect[i] = new Rectangle
+                {
+                    Height = HEIGHT,
+                    Width = HEIGHT
+                };
+                if (cb.IsChecked == true)
                 {
                     rect[i].Fill = new SolidColorBrush(singleColor);
                 }
@@ -177,7 +179,7 @@ namespace Tetris
                         rect[i] = cgame.Children[brickNumber - 1 - i] as Rectangle;
                     }
                 }
-                
+
             }
             complete = false;
         }
@@ -187,14 +189,16 @@ namespace Tetris
         public void Window_Loaded(object sender, RoutedEventArgs e)
         {
             first.Focus();
-            dt = new DispatcherTimer();
-            dt.Interval = TimeSpan.FromMilliseconds((6 - speedSlider.Value) * 40);
-            dt.IsEnabled = false;
-            dt.Tick += dt_Tick;
+            dt = new DispatcherTimer
+            {
+                Interval = TimeSpan.FromMilliseconds((6 - speedSlider.Value) * 40),
+                IsEnabled = false
+            };
+            dt.Tick += Dt_Tick;
             speedSlider.ToolTip = speedSlider.Value;
             speedSlider.Focusable = false;
             iRan = ran.Next(1, 6);
-            drawShapes(iRan);
+            DrawShapes(iRan);
             //this.KeyDown -= Window_KeyDown;
             TextBox tb = new TextBox();
             //屏蔽输入法
@@ -203,7 +207,7 @@ namespace Tetris
         #endregion
 
         #region 判断游戏是否结束
-        public bool gameover()
+        public bool Gameover()
         {
             for (int i = 0; i < cgame.Children.Count; i++)
             {
@@ -219,21 +223,21 @@ namespace Tetris
         #region 处理键盘事件
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-            if (upButton.IsEnabled && (e.Key == Key.Left || e.Key==Key.A))
+            if (upButton.IsEnabled && (e.Key == Key.Left || e.Key == Key.A))
             {
-                operation(1);
+                Operation(1);
             }
             else if (upButton.IsEnabled && (e.Key == Key.Right || e.Key == Key.D))
             {
-                operation(2);
+                Operation(2);
             }
             else if (upButton.IsEnabled && (e.Key == Key.Up || e.Key == Key.W))
             {
-                operation(3);
+                Operation(3);
             }
             else if (upButton.IsEnabled && (e.Key == Key.Down || e.Key == Key.S))
             {
-                operation(4);
+                Operation(4);
             }
             else if (e.Key == Key.M)
             {
@@ -257,17 +261,17 @@ namespace Tetris
             }
             else if (e.Key == Key.Z)
             {
-                stop();
+                Stop();
             }
             else if (e.Key == Key.Q)
             {
-                start_Click(sender, e);
+                Start_Click(sender, e);
             }
         }
         #endregion
 
         #region 处理玩家的操作
-        public void operation(int way)
+        public void Operation(int way)
         {
             //到达最底
             for (int i = 0; i < 4; i++)
@@ -278,7 +282,7 @@ namespace Tetris
                 }
             }
             //方向左
-            if (way == 1 && canOperate(1))
+            if (way == 1 && CanOperate(1))
             {
                 for (int i = 0; i < 4; i++)
                 {
@@ -296,7 +300,7 @@ namespace Tetris
                 }
             }
             //方向右
-            else if (way == 2 && canOperate(2))
+            else if (way == 2 && CanOperate(2))
             {
                 for (int i = 0; i < 4; i++)
                 {
@@ -314,7 +318,7 @@ namespace Tetris
                 }
             }
             //方向上
-            else if (way == 3 && canOperate(3))
+            else if (way == 3 && CanOperate(3))
             {
                 left = Canvas.GetLeft(cgame.Children[brickNumber - 1]);
                 for (int i = 0; i < 4; i++)
@@ -515,7 +519,7 @@ namespace Tetris
                     }
                 }
             }
-            else if (way == 4 && canOperate(3))
+            else if (way == 4 && CanOperate(3))
             {
                 for (int i = 0; i < 4; i++)
                 {
@@ -526,16 +530,16 @@ namespace Tetris
         #endregion
 
         #region 准备开始游戏
-        private void start_Click(object sender, RoutedEventArgs e)
+        private void Start_Click(object sender, RoutedEventArgs e)
         {
             //sp.PlayLooping();
-            if (dt.IsEnabled==false && cgame.Children.Count != 0)
+            if (dt.IsEnabled == false && cgame.Children.Count != 0)
             {
                 dt.IsEnabled = true;
             }
-            if (dt.IsEnabled && !gameover())
+            if (dt.IsEnabled && !Gameover())
             {
-                sh.write("用时：" + labelTime.Content + "\t\t分数：" + labelScore.Content);
+                sh.Write("用时：" + labelTime.Content + "\t\t分数：" + labelScore.Content);
                 //if (goOn.Content.ToString() == "暂停")
                 //{
                 //    this.KeyDown -= Window_KeyDown;
@@ -559,55 +563,55 @@ namespace Tetris
         #endregion
 
         #region 暂停按钮
-        public void goOn_Click(object sender, RoutedEventArgs e)
+        public void GoOn_Click(object sender, RoutedEventArgs e)
         {
-            stop();
+            Stop();
         }
         #endregion
 
         #region 处理方向按钮
-        private void leftButton_Click(object sender, RoutedEventArgs e)
+        private void LeftButton_Click(object sender, RoutedEventArgs e)
         {
             RepeatButton rb = sender as RepeatButton;
             if (rb.Content.ToString() == "Left")
             {
-                operation(1);
+                Operation(1);
             }
             else if (rb.Content.ToString() == "Right")
             {
-                operation(2);
+                Operation(2);
             }
             else if (rb.Content.ToString() == "Up")
             {
-                operation(3);
+                Operation(3);
             }
             else if (rb.Content.ToString() == "Down")
             {
-                operation(4);
+                Operation(4);
             }
         }
         #endregion
 
         #region 游戏运行中
-        public void dt_Tick(object sender, EventArgs e)
+        public void Dt_Tick(object sender, EventArgs e)
         {
-            time += dt.Interval.TotalMilliseconds/1000;
+            time += dt.Interval.TotalMilliseconds / 1000;
             labelTime.Content = time.ToString("#0.000") + " 秒";
             dt.Interval = TimeSpan.FromMilliseconds((6 - speedSlider.Value) * 40);
             if (complete)
             {
-                calScore();
-                drawShapes(iRan);
+                CalScore();
+                DrawShapes(iRan);
                 current = iRan;
                 brickNumber = cgame.Children.Count;
                 trans = 0;
                 iRan = ran.Next(1, 6);
                 if (score > 500)
                 {
-                    if(score>1000 && speedSlider.Value < 4)
+                    if (score > 1000 && speedSlider.Value < 4)
                     {
                         speedSlider.Value = 4;
-                        if(score>2000 && speedSlider.Value < 5)
+                        if (score > 2000 && speedSlider.Value < 5)
                         {
                             speedSlider.Value = 5;
                         }
@@ -628,11 +632,11 @@ namespace Tetris
                 else
                 {
                     iRan = (iRan == 5) && (ran.Next(1, 6) > 4) ? 5 : iRan;
-                } 
-                drawShapes(iRan);
+                }
+                DrawShapes(iRan);
             }
-            
-            if (canOperate(3))
+
+            if (CanOperate(3))
             {
                 for (int i = 0; i < 4; i++)
                 {
@@ -647,7 +651,7 @@ namespace Tetris
         #endregion
 
         #region 判断方向键是否起作用
-        public bool canOperate(int play)
+        public bool CanOperate(int play)
         {
             if (brickNumber < 6)
             {
@@ -721,20 +725,20 @@ namespace Tetris
         #endregion
 
         #region 读取历史记录
-        private void recoder_Click(object sender, RoutedEventArgs e)
+        private void Recoder_Click(object sender, RoutedEventArgs e)
         {
-            sh.read();
+            sh.Read();
         }
         #endregion
 
         #region 计算分数
-        public void calScore()
+        public void CalScore()
         {
-            for(int i = 30; i > 0; i--)
+            for (int i = 30; i > 0; i--)
             {
                 canGetScore = 0;
                 brickNumber = cgame.Children.Count;
-                for(int j = 0; j < brickNumber; j++)
+                for (int j = 0; j < brickNumber; j++)
                 {
                     if (Canvas.GetTop(cgame.Children[j]) == (HEIGHT * i))
                     {
@@ -763,7 +767,7 @@ namespace Tetris
                     i++;
                 }
             }
-            labelScore.Content = score*10 + " 分";
+            labelScore.Content = score * 10 + " 分";
         }
         #endregion
 
@@ -776,20 +780,20 @@ namespace Tetris
             }
             if (dt.IsEnabled)
             {
-                sh.write("用时：" + labelTime.Content + "\t\t分数：" + labelScore.Content);
+                sh.Write("用时：" + labelTime.Content + "\t\t分数：" + labelScore.Content);
             }
         }
         #endregion
 
         #region 速度改变
-        private void speedSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        private void SpeedSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             speedSlider.ToolTip = speedSlider.Value.ToString("0.00");
         }
         #endregion
 
         #region 方块颜色
-        private void cb_Checked(object sender, RoutedEventArgs e)
+        private void Cb_Checked(object sender, RoutedEventArgs e)
         {
             if (leftButton.IsEnabled)
             {
@@ -799,7 +803,7 @@ namespace Tetris
             cd.ShowDialog();
             if (cd.Color != null)
             {
-                if((sender as CheckBox).Content.ToString() == "纯色")
+                if ((sender as CheckBox).Content.ToString() == "纯色")
                 {
                     //system.drawing.color 与system.windows.media.color互转
                     singleColor = Color.FromArgb(cd.Color.A, cd.Color.R, cd.Color.G, cd.Color.B);
@@ -821,13 +825,13 @@ namespace Tetris
         {
             if (goOn.Content.ToString() == "暂停")
             {
-                stop();
+                Stop();
             }
         }
         #endregion
 
         #region 暂停游戏方法
-        public void stop()
+        public void Stop()
         {
             if (goOn.Content.ToString() == "暂停")
             {
