@@ -2,4 +2,4 @@
 
 游戏截图
 
-![截图](http://oq4pzgtcb.bkt.clouddn.com/zhazhapan/md/QQ20171023-204413@2x.png)
+![截图](http://oq4pzgtcb.bkt.clouddn.com/zhazhapan/md/QQ20171024-123059@2x.png)
